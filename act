@@ -1,0 +1,86 @@
+print("_______GHANSHYAM'S DAILY PRODUCTIVITY PLANNER______")
+
+# 1. Tuple → FIXED daily tasks
+TASKS = ("Sleep", "Bath", "Exercise", "Study")
+
+# 2. Dictionary → Store yesterday's performance
+yesterday = {}
+
+# 3. Set → Completed tasks (for checking productivity variety)
+completed = set()
+
+# 4. List → To store numeric values
+values = []
+
+# ---- INPUT SECTION ----
+print("\nEnter your yesterday's activity details:\n")
+
+# Sleep hours
+sleep = float(input("Hours you slept: "))
+yesterday["Sleep"] = sleep
+values.append(sleep)
+completed.add("Sleep")
+
+# Bath (yes/no)
+bath = input("Did you take bath? (yes/no): ").lower()
+yesterday["Bath"] = bath
+if bath == "yes":
+    completed.add("Bath")
+
+# Exercise minutes
+exercise = float(input("Exercise minutes: "))
+yesterday["Exercise"] = exercise
+values.append(exercise)
+if exercise > 0:
+    completed.add("Exercise")
+
+# Study hours
+study = float(input("Study hours: "))
+yesterday["Study"] = study
+values.append(study)
+completed.add("Study")
+
+# ---- PRODUCTIVITY CALCULATION ----
+
+score = 0
+
+# sleep scoring
+if sleep >= 7:
+    score += 30
+elif sleep >= 5:
+    score += 20
+else:
+    score += 10
+
+# bath scoring
+if bath == "yes":
+    score += 10
+
+# exercise scoring
+if exercise >= 30:
+    score += 25
+elif exercise > 0:
+    score += 15
+
+# study scoring
+if study >= 4:
+    score += 35
+elif study >= 2:
+    score += 25
+else:
+    score += 10
+
+# Formula: productivity percentage
+productivity = (score / 100) * 100
+
+# ---- OUTPUT ----
+print("\n___MORNING REPORT___")
+print("Yesterday's Summary:\n")
+
+for task, value in yesterday.items():
+    print(f"- {task}: {value}")
+
+print(f"\nYou completed {len(completed)} unique tasks.")
+
+print(f"\n➡ Ghanshyam's Productivity Yesterday = {productivity:.2f}%")
+print("Great job! Keep improving daily! ")
